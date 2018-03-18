@@ -1,0 +1,52 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:__html="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Json Upload</title>
+    <!--Bootstrap CSS-->
+    <link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    <!--Bootstrap JS-->
+    <script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="/webjars/jquery/3.3.1-1/jquery.min.js"></script>
+
+<style>
+
+
+</style>
+</head>
+<body>
+
+<div>
+<div>
+    <iframe style="position: fixed " src="/" width="25%" height="100%"></iframe>
+</div>
+
+<div style="margin-left: 25%">
+<form action="#" th:action="@{/newfile}" th:object="${htmlString}" method="post">
+
+    <div>
+        <a href="javascript:addMarkup();" class="add-markup">Show</a>
+        <div class="output" id="js-output"><p></p></div>
+    </div>
+
+    <script th:inline="javascript">
+        index = 0;
+        addMarkup = function() {
+            var output = document.getElementById("js-output");
+            var htmlButton = [[${htmlString}]];
+            output.innerHTML = htmlButton + output.innerHTML;
+        }
+    </script>
+
+
+</form>
+
+</div>
+</div>
+
+
+
+
+
+</body>
+</html>

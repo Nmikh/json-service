@@ -1,0 +1,101 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Json Upload</title>
+    <!--Bootstrap CSS-->
+    <link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    <!--Bootstrap JS-->
+    <script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="/webjars/jquery/3.3.1-1/jquery.min.js"></script>
+
+<style>
+#button{
+width: 100px;
+margin:10px;
+}
+#update{
+    width: 100px;
+    margin:10px;
+}
+    .centerdiv{
+        width:40vh;
+        align:center;
+    }
+</style>
+</head>
+<body>
+
+<div th:if="${message}">
+    <h2 th:text="${message}"/>
+</div>
+
+<div>
+
+
+    <form method="POST" enctype="multipart/form-data" action="/">
+        <div align="center">
+
+           <table>
+               <tr>
+                   <th>
+                       <label id="button" class="btn btn-lg btn-block btn-primary">
+                           Browse <input name="file" type="file" hidden="true"/>
+                       </label>
+                   </th>
+                   <th>
+                       <label id="button" class="btn btn-lg btn-block btn-primary">
+                           Upload <input type="submit" value="Upload" hidden="true" />
+                       </label>
+                   </th>
+                   <th>
+                       <label id="update" class="btn btn-lg btn-block btn-primary " onclick="location.href='/update'">
+                           Update
+                       </label>
+                   </th>
+               </tr>
+           </table>
+           </div>
+
+
+    </form>
+</div>
+
+<form action="#" th:action="@{/findall}" th:object="${jmessages}" method="post">
+<div align="center">
+    <div class="centerdiv">
+
+        <table class="table" width="100%" border="2" id="tabl">
+
+            <tr>
+                <th>id</th>
+                <th>Name</th>
+                <th>Read</th>
+            </tr>
+
+
+            <tr th:each="jmessage : ${jmessages}">
+
+                <td th:text="${jmessage.id}"></td>
+                <td th:text="${jmessage.name}"></td>
+                <td><a th:href="@{/file(name = ${jmessage.name})}"  target="_parent">html</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+</form>
+
+
+<div>
+    <ul>
+        <li th:each="file : ${files}">
+            <a th:href="${file}" th:text="${file}" />
+        </li>
+    </ul>
+</div>
+
+
+
+    </body>
+</html>
